@@ -3,3 +3,7 @@
 # public/videos/ad-15s-vertical.mp4, so the source/deps are not needed
 # for the Next.js deploy.
 remotion-ads/
+
+# Local tooling and generated reports — not part of the deployed site.
+scripts/
+reports/

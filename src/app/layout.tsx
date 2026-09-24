@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Unbounded, Geist_Mono } from "next/font/google";
 import { JsonLdScript } from "@/components/JsonLdScript";
 import { personJsonLd } from "@/lib/schema";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const unbounded = Unbounded({
@@ -61,6 +62,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <JsonLdScript data={personJsonLd()} />
         {children}
+        {/* Vercel Web Analytics — ~1KB, first-party (/_vercel/insights),
+            cookieless, no consent banner required. Chosen to satisfy the
+            "sem analytics pesado" performance rule in CLAUDE.md. */}
+        <Analytics />
       </body>
     </html>
   );
