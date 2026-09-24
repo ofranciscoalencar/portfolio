@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { loadUnbounded } from "@/lib/og-font";
 
 /**
  * iOS home-screen icon — 180×180 PNG. Apple's spec is 180×180 and they
@@ -11,23 +12,8 @@ import { ImageResponse } from "next/og";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-async function loadUnboundedBold(): Promise<ArrayBuffer> {
-  const css = await fetch(
-    "https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap",
-    {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
-      },
-    }
-  ).then((r) => r.text());
-  const match = css.match(/src:\s*url\((.+?)\)\s*format/);
-  if (!match) throw new Error("Could not locate Unbounded Bold font URL");
-  return fetch(match[1]).then((r) => r.arrayBuffer());
-}
-
 export default async function AppleIcon() {
-  const fontData = await loadUnboundedBold();
+  const fontData = await loadUnbounded(700);
 
   return new ImageResponse(
     (
