@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0A;
+  --color-foreground: #F5F5F1;
+  --color-accent: #FF2D1A;
+  --color-muted: #7A7A75;
+  --color-line: #1A1A1A;
+
+  --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --tracking-hero: -0.02em;
+  --tracking-caption: 0.08em;
+}
+
+html {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+/* Logo cycle: fade-in only so each logo appears instantly and stays
+   visible until the next index swap replaces it. The element re-mounts
+   on every tick (via key={index}), so a fade-out keyframe would just
+   yank the logo back to invisible mid-display. */
+@keyframes logo-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-logo-fade {
+  animation: logo-fade 120ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-logo-fade {
+    animation: logo-fade 400ms ease-in-out;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-panel-in {
+  animation: panel-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-panel-in {
+    animation: none;
+  }
+}
+
+@keyframes poster-pan {
+  0% {
+    transform: scale(1.05) translate(0%, 0%);
+  }
+  50% {
+    transform: scale(1.12) translate(-1.5%, 1%);
+  }
+  100% {
+    transform: scale(1.05) translate(0%, 0%);
+  }
+}
+
+.animate-poster-pan {
+  animation: poster-pan 24s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-poster-pan {
+    animation: none;
+    transform: scale(1.05);
+  }
+}

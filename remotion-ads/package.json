@@ -1,0 +1,24 @@
+{
+  "name": "champs-portfolio-ads",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion compositions for short-form portfolio ads (15s vertical, 9:16).",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render Ad15sVertical out/ad-15s-vertical.mp4",
+    "build:preview": "remotion render Ad15sVertical out/preview.mp4 --concurrency=1"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.380",
+    "@remotion/fonts": "^4.0.380",
+    "@remotion/google-fonts": "^4.0.462",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "^4.0.380"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.5.3"
+  }
+}

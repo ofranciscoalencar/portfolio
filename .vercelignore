@@ -1,0 +1,5 @@
+# Remotion ad-build project — its own Node project with its own
+# node_modules. The rendered output already lives at
+# public/videos/ad-15s-vertical.mp4, so the source/deps are not needed
+# for the Next.js deploy.
+remotion-ads/

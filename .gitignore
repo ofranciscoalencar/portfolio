@@ -1,0 +1,55 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# ─── Large media ────────────────────────────────────────────────────
+# Source videos and 15s edits are served as Vercel static assets and
+# uploaded from local disk at `vercel deploy` time. They are NOT in git:
+# ~450MB would bloat every clone past what GitHub is comfortable with.
+# See README.md "Media" and src/data/youtube-ids.ts for what belongs here.
+/public/videos/
+
+# ─── Remotion ad project ────────────────────────────────────────────
+# The compositions under remotion-ads/src ARE tracked. Everything below
+# is derived: installed deps, extracted scene clips, and renders.
+/remotion-ads/node_modules/
+/remotion-ads/public/clips/
+/remotion-ads/out/

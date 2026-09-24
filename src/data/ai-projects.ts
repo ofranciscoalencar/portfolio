@@ -1,0 +1,80 @@
+/**
+ * ai-projects.ts — AI-native practice slate.
+ *
+ * Reuses the IntellectualProperty type from entertainment.ts since the
+ * IPBrowser component renders both. Each entry below describes an
+ * AI-augmented workflow, app, or tool built or actively developed
+ * inside the studio.
+ */
+
+import type { IntellectualProperty } from "./entertainment";
+
+export const aiProjects: IntellectualProperty[] = [
+  {
+    slug: "interoception",
+    title: "Interoception",
+    format: "Mobile App. iOS · Android.",
+    genre: "Mental Health · AI-Native Product",
+    logline: {
+      en: "An AI-native mental health app that teaches people to read their own body signals before stress takes the wheel. Daily check-ins, guided practices, and a model that learns the user's nervous system over time.",
+      pt: "Um app de saúde mental AI-native que ensina pessoas a ler os próprios sinais do corpo antes do estresse assumir o volante. Check-ins diários, práticas guiadas e um modelo que aprende o sistema nervoso do usuário ao longo do tempo.",
+    },
+    year: "2026",
+    status: "in development",
+    confidentiality: "request-gated",
+    videoPath: "/videos/ai/interoception.mp4",
+    // Calm cyan — close to the digital-health palette
+    tint: { r: 30, g: 180, b: 220 },
+  },
+  {
+    slug: "prompt-sao-paulo-fc",
+    title: "Prompt São Paulo FC",
+    format: "TBD",
+    genre: "Sports · Brand · AI-Native Workflow",
+    logline: {
+      en: "Coming soon.",
+      pt: "Em breve.",
+    },
+    year: "2026",
+    status: "plan mode",
+    confidentiality: "request-gated",
+    videoPath: "/videos/ai/prompt-sao-paulo-fc.mp4",
+    // São Paulo FC red
+    tint: { r: 220, g: 60, b: 40 },
+  },
+  {
+    slug: "property-auction-tracker",
+    title: "Property Auction Tracker",
+    format: "Web App. Internal Tool.",
+    genre: "Real Estate · AI-Native Workflow",
+    logline: {
+      en: "An AI-native pipeline that scans Brazilian judicial auction portals, reads matrículas and edital PDFs, runs underwriting math, and surfaces only the deals that pass the thesis. Built to compress weeks of manual research into a daily dashboard.",
+      pt: "Um pipeline AI-native que varre portais de leilão judicial no Brasil, lê matrículas e PDFs de edital, roda a matemática de underwriting e entrega só os negócios que passam na tese. Feito para comprimir semanas de pesquisa manual em um dashboard diário.",
+    },
+    year: "2026",
+    status: "online",
+    confidentiality: "request-gated",
+    videoPath: "/videos/ai/property-auction-tracker.mp4",
+    // Violet — analytical / data
+    tint: { r: 140, g: 80, b: 220 },
+  },
+  {
+    slug: "netflix-ad-dashboard",
+    title: "Netflix Ad Dashboard",
+    format: "Internal Dashboard. Strategy Tool.",
+    genre: "Advertising · AI-Native Workflow",
+    logline: {
+      en: "A strategy dashboard for the Netflix ad-supported tier. Pulls audience signals, slate timing, and partner brand fit into one view, with AI-drafted recommendations for which titles to package against which advertisers.",
+      pt: "Um dashboard de estratégia para o tier publicitário do Netflix. Reúne sinais de audiência, timing do slate e fit com marcas parceiras em uma única visão, com recomendações geradas por IA sobre quais títulos empacotar para quais anunciantes.",
+    },
+    year: "2026",
+    status: "online",
+    confidentiality: "request-gated",
+    // Amber / gold
+    tint: { r: 220, g: 160, b: 40 },
+  },
+];
+
+// Page-level background video. Plays on initial load before any AI
+// project is hovered; once a project is active its tint takes over.
+export const AI_INTRO_VIDEO = "/videos/ai/intro.mp4";
