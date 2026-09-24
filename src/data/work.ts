@@ -1,8 +1,9 @@
 /**
  * work.ts — Source of truth for all films × brands.
- * Updated 2026-04-23: added Netflix + CazéTV + Nubank as brands (films pending);
- * removed PLAYTAGS, THESCIENCEBOX, Google Photos + Android.
- * Current state: 13 films across 9 brands.
+ * Current state: 17 films across 9 brands.
+ *
+ * History: Netflix + CazéTV + Nubank added as brands 2026-04-23;
+ * PLAYTAGS, THESCIENCEBOX and Google Photos + Android removed.
  */
 
 export type Film = {
