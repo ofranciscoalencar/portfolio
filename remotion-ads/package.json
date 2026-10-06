@@ -6,7 +6,10 @@
   "scripts": {
     "start": "remotion studio",
     "build": "remotion render Ad15sVertical out/ad-15s-vertical.mp4",
-    "build:preview": "remotion render Ad15sVertical out/preview.mp4 --concurrency=1"
+    "build:preview": "remotion render Ad15sVertical out/preview.mp4 --concurrency=1",
+    "build:feed": "remotion render Ad15sFeed out/ad-15s-feed.mp4",
+    "clips": "bash scripts/extract-scenes.sh",
+    "beat": "python3 scripts/gen-beat.py"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.380",

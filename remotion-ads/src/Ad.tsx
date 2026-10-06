@@ -6,6 +6,7 @@ import {
   interpolate,
   staticFile,
   useCurrentFrame,
+  useVideoConfig,
 } from "remotion";
 import { loadFont as loadUnbounded } from "@remotion/google-fonts/Unbounded";
 
@@ -13,6 +14,9 @@ import { loadFont as loadUnbounded } from "@remotion/google-fonts/Unbounded";
 export const FPS = 30;
 export const WIDTH = 1080;
 export const HEIGHT = 1920;
+// 4:5 feed cut (LinkedIn + Instagram feed). Same scenes, same timeline:
+// the 9:16 clips are cover-cropped top and bottom by the video element.
+export const FEED_HEIGHT = 1350;
 // 15 seconds × 30fps = 450 frames
 export const DURATION_IN_FRAMES = 15 * FPS;
 
@@ -44,6 +48,8 @@ type Scene = {
   beatFlash?: boolean;
 };
 
+// Clip files are built by scripts/extract-scenes.sh — keep its order in
+// sync. BeatFlash scenes must match DROPS in scripts/gen-beat.py.
 const SCENES: Scene[] = [
   { start: 0, duration: 60, clip: "scene-00.mp4" }, // intro Rio aerial (2s)
   { start: 60, duration: 30, clip: "scene-01.mp4", word: "HELLO" },
@@ -142,6 +148,7 @@ const WordOverlay: React.FC<{
   trailingDot?: boolean;
 }> = ({ word, durationInFrames, trailingDot }) => {
   const frame = useCurrentFrame();
+  const { height } = useVideoConfig();
 
   const enterScale = interpolate(frame, [0, 6], [0.92, 1], {
     extrapolateRight: "clamp",
@@ -170,7 +177,8 @@ const WordOverlay: React.FC<{
       style={{
         justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: 280, // safe area above the bottom edge
+        // Safe area above the bottom edge — 280px at 9:16, scaled for 4:5.
+        paddingBottom: Math.round(height * 0.146),
       }}
     >
       <div
