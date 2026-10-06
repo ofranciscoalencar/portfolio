@@ -34,7 +34,11 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
   }, []);
 
   const active = films.find((f) => f.slug === activeSlug) ?? films[0] ?? null;
-  const activeVideo = active ? `/videos/originals/${active.slug}.mp4` : null;
+  const activeVideo =
+    active && !active.comingSoon ? `/videos/originals/${active.slug}.mp4` : null;
+  // Announced-but-unreleased films don't count toward the brand's film total.
+  const releasedCount = films.filter((f) => !f.comingSoon).length;
+  const soonLabel = lang === "pt" ? "EM BREVE" : "COMING SOON";
 
   useEffect(() => {
     const video = videoRef.current;
@@ -83,11 +87,11 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
         <div className="flex flex-col justify-end">
           <div className="font-mono text-[11px] tracking-[0.08em] text-foreground/60 mb-3">
             {lang === "pt" ? "TRABALHOS" : "WORK"} ·{" "}
-            {films.length === 1
+            {releasedCount === 1
               ? lang === "pt"
                 ? "1 FILME"
                 : "1 FILM"
-              : `${films.length} ${lang === "pt" ? "FILMES" : "FILMS"}`}
+              : `${releasedCount} ${lang === "pt" ? "FILMES" : "FILMS"}`}
           </div>
           <h1
             className="font-display font-medium leading-[0.9] tracking-[-0.02em] text-foreground"
@@ -139,7 +143,7 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
                           isActive ? "text-foreground/80" : "text-foreground/45"
                         }`}
                       >
-                        {film.year}
+                        {film.comingSoon ? soonLabel : film.year}
                       </span>
                     </button>
                   </li>
@@ -173,7 +177,10 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
             <div className="max-w-lg lg:ml-auto">
               <p className="font-mono text-[11px] tracking-[0.08em] text-accent">
                 {brand.name.toUpperCase()}
-                <span className="text-foreground/40"> · {active.year}</span>
+                <span className="text-foreground/40">
+                  {" · "}
+                  {active.comingSoon ? soonLabel : active.year}
+                </span>
               </p>
               <h2
                 className="mt-3 font-display font-medium leading-[1.05] tracking-[-0.015em] text-foreground"
@@ -187,12 +194,14 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
               >
                 {active.tagline[lang]}
               </p>
-              <p
-                className="mt-5 text-foreground/75 leading-relaxed"
-                style={{ fontSize: "clamp(13px, 1.1vw, 15px)" }}
-              >
-                {active.synopsis[lang]}
-              </p>
+              {!active.comingSoon && (
+                <p
+                  className="mt-5 text-foreground/75 leading-relaxed"
+                  style={{ fontSize: "clamp(13px, 1.1vw, 15px)" }}
+                >
+                  {active.synopsis[lang]}
+                </p>
+              )}
 
               {/* Tags / metadata */}
               <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 font-mono text-[10px] tracking-[0.08em]">
@@ -204,20 +213,24 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
                     {active.client.toUpperCase()}
                   </dd>
                 </div>
-                <div>
-                  <dt className="text-foreground/45">
-                    {lang === "pt" ? "FUNÇÃO" : "ROLE"}
-                  </dt>
-                  <dd className="mt-1 text-foreground/90">
-                    {active.role.toUpperCase()}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-foreground/45">
-                    {lang === "pt" ? "ANO" : "YEAR"}
-                  </dt>
-                  <dd className="mt-1 text-foreground/90">{active.year}</dd>
-                </div>
+                {!active.comingSoon && (
+                  <>
+                    <div>
+                      <dt className="text-foreground/45">
+                        {lang === "pt" ? "FUNÇÃO" : "ROLE"}
+                      </dt>
+                      <dd className="mt-1 text-foreground/90">
+                        {active.role.toUpperCase()}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-foreground/45">
+                        {lang === "pt" ? "ANO" : "YEAR"}
+                      </dt>
+                      <dd className="mt-1 text-foreground/90">{active.year}</dd>
+                    </div>
+                  </>
+                )}
                 {/* DURATION removed 2026-05-04 — runtimes weren't telling
                     the story. Slot now reserved for outcome data:
                     VIEWS > AWARDS > RESULTS, whichever the film has. */}

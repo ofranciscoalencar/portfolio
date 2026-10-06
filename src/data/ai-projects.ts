@@ -73,6 +73,26 @@ export const aiProjects: IntellectualProperty[] = [
     // Amber / gold
     tint: { r: 220, g: 160, b: 40 },
   },
+  {
+    slug: "compliance-zero",
+    title: "The Compliance Zero Simulation",
+    format: "Browser Game. PT-BR.",
+    genre: "Political Satire · AI + Real-Time News",
+    // Premise taken from the game's own copy (compliance-zero-art). Names no
+    // individuals on purpose: everyone in the underlying case is unconvicted.
+    logline: {
+      en: "A satirical card game about the Banco Master case. You play an ordinary man climbing from city hall to billionaire, three cards a round, trying to hit the target before a journalist publishes and the Federal Police knock. Every card stamped FATO is a published, sourced fact. The rest is declared satire. Built with Claude and updated with the news as the case unfolds.",
+      pt: "Um jogo de cartas satírico sobre o Caso Master. Você é um cidadão de bem subindo da prefeitura ao bilionário, três cartas por rodada, tentando bater a meta antes que a jornalista publique e a Polícia Federal bata à porta. Toda carta com o selo FATO aconteceu e tem fonte. O resto é sátira declarada. Feito com Claude e atualizado com o noticiário conforme o caso avança.",
+    },
+    year: "2026",
+    status: "in development",
+    confidentiality: "request-gated",
+    // No launch film yet — static key art from the game (pixel-art PF search
+    // scene, generic figures), shown with IPBrowser's slow poster pan.
+    posterPath: "/images/ai/compliance-zero.jpg",
+    // Sunset magenta from the key art
+    tint: { r: 200, g: 70, b: 90 },
+  },
 ];
 
 // Page-level background video. Plays on initial load before any AI

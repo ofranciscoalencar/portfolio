@@ -1,6 +1,6 @@
 /**
  * work.ts — Source of truth for all films × brands.
- * Current state: 17 films across 9 brands.
+ * Current state: 17 released films + 1 coming soon, across 9 brands.
  *
  * History: Netflix + CazéTV + Nubank added as brands 2026-04-23;
  * PLAYTAGS, THESCIENCEBOX and Google Photos + Android removed.
@@ -32,6 +32,9 @@ export type Film = {
   // Business / press / cultural outcomes (e.g. "Featured in Adweek;
   // 64.8K likes in 24h"). Optional, same slot as awards/views.
   results?: string
+  // Announced but not yet released. FilmBrowser renders no video, hides
+  // role/year, and the film is left out of counts and VideoObject JSON-LD.
+  comingSoon?: boolean
   videoPath: string        // /videos/originals/{slug}.mp4
   editPath: string         // /videos/edits-15s/{slug}.mp4
   posterPath: string       // /art/{slug}.webp (TBD — Stage 3)
@@ -119,8 +122,8 @@ export const brands: Brand[] = [
     slug: 'nubank',
     name: 'Nubank',
     tagline: {
-      en: 'Creative direction on the worldwide rebrand partnership with Koto NYC.',
-      pt: 'Direção criativa no rebrand global em parceria com a Koto NYC.',
+      en: 'Naming and brand identity for Croma, created from zero with KOTO NYC.',
+      pt: 'Naming e identidade de marca do Croma, criados do zero com a KOTO NYC.',
     },
     filmCount: 1,
     order: 4,
@@ -331,7 +334,7 @@ export const films: Film[] = [
     order: 7,
   },
 
-  // ── YOUTUBE (5 films) ─────────────────────────────────────
+  // ── YOUTUBE (3 films + 1 coming soon) ─────────────────────
 
   {
     id: 8,
@@ -407,6 +410,30 @@ export const films: Film[] = [
     featured: true,
     heroShot: 'Shot 15',
     order: 3,
+  },
+  {
+    id: 21,
+    slug: 'youtube-branding',
+    title: 'YouTube Branding',
+    tagline: {
+      en: 'Coming soon.',
+      pt: 'Em breve.',
+    },
+    synopsis: {
+      en: 'Coming soon.',
+      pt: 'Em breve.',
+    },
+    brand: 'youtube',
+    client: 'YouTube',
+    role: '',
+    year: 2026,
+    duration: '',
+    comingSoon: true,
+    videoPath: '/videos/originals/youtube-branding.mp4',
+    editPath: '/videos/edits-15s/youtube-branding.mp4',
+    posterPath: '/art/youtube-branding.webp',
+    featured: false,
+    order: 4,
   },
 
   // ── TIKTOK (1 film) ───────────────────────────────────────
@@ -575,28 +602,29 @@ export const films: Film[] = [
     order: 1,
   },
 
-  // ── NUBANK (1 film — 2026 placeholder) ────────────────────
+  // ── NUBANK (1 film) ───────────────────────────────────────
 
   {
     id: 19,
-    slug: 'nubank-brand-system',
-    title: 'Nubank Brand System',
+    slug: 'nubank-croma',
+    title: 'Nubank Croma',
     tagline: {
-      en: 'The next chapter of a brand that rewrote finance for 100M people.',
-      pt: 'O próximo capítulo de uma marca que reescreveu o sistema financeiro para 100 milhões de pessoas.',
+      en: 'What you really want.',
+      pt: 'O que você realmente quer.',
     },
     synopsis: {
-      en: "Creative Director consultant on Nubank's new brand system, in development for 2026 release. A next-chapter identity for a brand that reshaped Latin American finance.",
-      pt: 'Creative Director consultor no novo sistema de marca do Nubank, em desenvolvimento para lançamento em 2026. Um próximo capítulo de identidade para uma marca que redesenhou o mercado financeiro latino-americano.',
+      en: "Naming and brand identity for Croma, Nubank's new customer segment, created from zero with KOTO NYC. The launch film plays on a familiar reflex: ordering the second-cheapest wine on the list. Croma is the moment you stop doing that and order what you actually want.",
+      pt: 'Naming e identidade de marca do Croma, novo segmento de clientes do Nubank, criados do zero com a KOTO NYC. O filme de lançamento brinca com um reflexo conhecido: pedir o segundo vinho mais barato da carta. O Croma é o momento em que você para de fazer isso e pede o que realmente quer.',
     },
     brand: 'nubank',
     client: 'Nubank',
     role: 'Creative Director (Consultant)',
     year: 2026,
-    duration: '1:30',
-    videoPath: '/videos/originals/nubank-brand-system.mp4',
-    editPath: '/videos/originals/nubank-brand-system.mp4',
-    posterPath: '/art/nubank-brand-system.webp',
+    duration: '0:30',
+    views: '44.2M',
+    videoPath: '/videos/originals/nubank-croma.mp4',
+    editPath: '/videos/edits-15s/nubank-croma.mp4',
+    posterPath: '/art/nubank-croma.webp',
     featured: true,
     order: 1,
   },
@@ -610,6 +638,7 @@ export const films: Film[] = [
 // THESCIENCEBOX (cut 2026-04-23)
 // PLAYTAGS (cut 2026-04-23)
 // Google Photos + Android (cut 2026-04-23)
+// Nubank Brand System placeholder (replaced by Nubank Croma 2026-10-06)
 
 // ─── HELPERS ───────────────────────────────────────────────
 

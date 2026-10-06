@@ -43,7 +43,7 @@ export const youtubeIds: Record<string, string> = {
   // ── NETFLIX / CAZÉTV / NUBANK (placeholders, 2026-04-23) ─
   "netflix-brand-partnerships": "GV3HUDMQ-F8",
   "cazetv-fifa-world-cup-2026": "XIBIVCoC7B4",
-  "nubank-brand-system": "MrVMLJWcdXU",
+  "nubank-croma": "-CJ1ydkcVZA",
 };
 
 export function getYouTubeId(slug: string): string | undefined {

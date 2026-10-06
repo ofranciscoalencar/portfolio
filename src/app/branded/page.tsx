@@ -22,7 +22,7 @@ export default async function BrandedIndexPage(
 
   const items: HoverReelItem[] = orderedBrands.map((brand) => {
     const brandFilms = films
-      .filter((f) => f.brand === brand.slug)
+      .filter((f) => f.brand === brand.slug && !f.comingSoon)
       .sort((a, b) => a.order - b.order);
     const hero = brandFilms.find((f) => f.featured) ?? brandFilms[0];
     // Per 2026-05-04: drop the film-count meta from the brand list.

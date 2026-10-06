@@ -22,7 +22,7 @@ export async function generateMetadata(
   const { brand: brandSlug } = await props.params;
   const brand = getBrandBySlug(brandSlug as BrandSlug);
   if (!brand) return {};
-  const count = getFilmsByBrand(brand.slug).length;
+  const count = getFilmsByBrand(brand.slug).filter((f) => !f.comingSoon).length;
   const filmsLabel = count === 1 ? "film" : "films";
   return {
     title: brand.name,
@@ -66,7 +66,11 @@ export default async function BrandDetailPage(
   // each film individually even though they live on the same page.
   const filmsSchemaGraph = {
     "@context": "https://schema.org",
-    "@graph": filmsInBrand.map((f) => videoJsonLd(f, brand)),
+    // Unreleased films have no video — a VideoObject pointing at a missing
+    // file is invalid structured data.
+    "@graph": filmsInBrand
+      .filter((f) => !f.comingSoon)
+      .map((f) => videoJsonLd(f, brand)),
   };
 
   return (
