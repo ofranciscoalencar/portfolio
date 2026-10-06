@@ -39,13 +39,14 @@ export const aiProjects: IntellectualProperty[] = [
     },
     year: "2026",
     status: "online",
-    confidentiality: "request-gated",
+    // Public: the game itself is the case, so no request-a-case panel.
+    confidentiality: "public",
     // No launch film yet — static key art from the game (pixel-art PF search
     // scene, generic figures), shown with IPBrowser's slow poster pan.
     posterPath: "/images/ai/compliance-zero.jpg",
     // Sunset magenta from the key art
     tint: { r: 200, g: 70, b: 90 },
-    // Live and playable — primary action sits above the request-a-case panel.
+    // Live and playable — the only action on the panel.
     cta: {
       label: { en: "PLAY ON ITCH.IO", pt: "JOGAR NO ITCH.IO" },
       href: "https://compliancezerosim.itch.io/compliance-zero",
@@ -71,7 +72,7 @@ export const aiProjects: IntellectualProperty[] = [
     slug: "property-auction-tracker",
     title: "Property Auction Tracker",
     format: "Web App. Internal Tool.",
-    genre: "Real Estate · AI-Native Workflow",
+    genre: "Market Intelligence · AI-Native Workflow",
     logline: {
       en: "An AI-native pipeline that scans Brazilian judicial auction portals, reads matrículas and edital PDFs, runs underwriting math, and surfaces only the deals that pass the thesis. Built to compress weeks of manual research into a daily dashboard.",
       pt: "Um pipeline AI-native que varre portais de leilão judicial no Brasil, lê matrículas e PDFs de edital, roda a matemática de underwriting e entrega só os negócios que passam na tese. Feito para comprimir semanas de pesquisa manual em um dashboard diário.",

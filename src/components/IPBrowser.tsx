@@ -131,6 +131,14 @@ export function IPBrowser({
         />
       )}
 
+      {/* Uniform 50% black mask over still key art — same treatment as the
+          home hero. Stills are dense, high-contrast images (e.g. pixel art)
+          that the directional gradients below don't calm enough on their
+          own; video backgrounds don't need it. */}
+      {activePoster && (
+        <div aria-hidden className="absolute inset-0 bg-black/50" />
+      )}
+
       {/* Soft gradient masks for legibility */}
       <div
         aria-hidden
