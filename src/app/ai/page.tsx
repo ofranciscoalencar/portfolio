@@ -10,7 +10,7 @@ import { resolveLang, type Lang } from "@/lib/i18n";
 export const metadata: Metadata = {
   title: "AI",
   description:
-    "AI-native creative practice by Francisco Alencar. Live and in-development tools, dashboards, and workflows built with Claude for entertainment, branded content, and real estate. Live projects: Property Auction Tracker, Netflix Ad Dashboard.",
+    "AI-native creative practice by Francisco Alencar. Live and in-development tools, dashboards, and workflows built with Claude for entertainment, branded content, and real estate. Live projects: The Compliance Zero Simulation, Property Auction Tracker, Netflix Ad Dashboard.",
 };
 
 // AI page reuses the IPBrowser slate template. Copy below mirrors the

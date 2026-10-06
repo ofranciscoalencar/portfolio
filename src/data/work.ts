@@ -1,6 +1,6 @@
 /**
  * work.ts — Source of truth for all films × brands.
- * Current state: 17 released films + 1 coming soon, across 9 brands.
+ * Current state: 17 released films + 2 coming soon, across 9 brands.
  *
  * History: Netflix + CazéTV + Nubank added as brands 2026-04-23;
  * PLAYTAGS, THESCIENCEBOX and Google Photos + Android removed.
@@ -122,8 +122,8 @@ export const brands: Brand[] = [
     slug: 'nubank',
     name: 'Nubank',
     tagline: {
-      en: 'Naming and brand identity for Croma, created from zero with KOTO NYC.',
-      pt: 'Naming e identidade de marca do Croma, criados do zero com a KOTO NYC.',
+      en: 'Naming, narrative and brand strategy for Croma, created from zero with KOTO NYC.',
+      pt: 'Naming, narrativa e estratégia de marca do Croma, criados do zero com a KOTO NYC.',
     },
     filmCount: 1,
     order: 4,
@@ -602,7 +602,7 @@ export const films: Film[] = [
     order: 1,
   },
 
-  // ── NUBANK (1 film) ───────────────────────────────────────
+  // ── NUBANK (1 film + 1 coming soon) ───────────────────────────────────────
 
   {
     id: 19,
@@ -613,12 +613,12 @@ export const films: Film[] = [
       pt: 'O que você realmente quer.',
     },
     synopsis: {
-      en: "Naming and brand identity for Croma, Nubank's new customer segment, created from zero with KOTO NYC. The launch film plays on a familiar reflex: ordering the second-cheapest wine on the list. Croma is the moment you stop doing that and order what you actually want.",
-      pt: 'Naming e identidade de marca do Croma, novo segmento de clientes do Nubank, criados do zero com a KOTO NYC. O filme de lançamento brinca com um reflexo conhecido: pedir o segundo vinho mais barato da carta. O Croma é o momento em que você para de fazer isso e pede o que realmente quer.',
+      en: "Naming, narrative, messaging and branding strategy for Croma, Nubank's new customer segment, created from zero in collaboration with KOTO NYC's designers, brand architects, project managers and client services team in New York. The launch film plays on a familiar reflex: ordering the second-cheapest wine on the list. Croma is the moment you stop doing that and order what you actually want.",
+      pt: 'Naming, narrativa, mensagem e estratégia de marca do Croma, novo segmento de clientes do Nubank, criados do zero em colaboração com o time da KOTO NYC em Nova York: designers, arquitetos de marca, gerentes de projeto e atendimento. O filme de lançamento brinca com um reflexo conhecido: pedir o segundo vinho mais barato da carta. O Croma é o momento em que você para de fazer isso e pede o que realmente quer.',
     },
     brand: 'nubank',
     client: 'Nubank',
-    role: 'Creative Director (Consultant)',
+    role: 'Creative Director & Branding Strategist (Consultant)',
     year: 2026,
     duration: '0:30',
     views: '44.2M',
@@ -627,6 +627,30 @@ export const films: Film[] = [
     posterPath: '/art/nubank-croma.webp',
     featured: true,
     order: 1,
+  },
+  {
+    id: 22,
+    slug: 'more-nubank-than-ever',
+    title: 'More Nubank Than Ever',
+    tagline: {
+      en: 'Coming soon.',
+      pt: 'Em breve.',
+    },
+    synopsis: {
+      en: 'Coming soon.',
+      pt: 'Em breve.',
+    },
+    brand: 'nubank',
+    client: 'Nubank',
+    role: '',
+    year: 2026,
+    duration: '',
+    comingSoon: true,
+    videoPath: '/videos/originals/more-nubank-than-ever.mp4',
+    editPath: '/videos/edits-15s/more-nubank-than-ever.mp4',
+    posterPath: '/art/more-nubank-than-ever.webp',
+    featured: false,
+    order: 2,
   },
 ]
 
@@ -665,7 +689,7 @@ export function getFeaturedFilms(): Film[] {
 }
 
 /** Total views across all films (for homepage stat) */
-export const totalViews = '100M+'
+export const totalViews = '140M+'
 
 /** Total number of brands featured on /branded */
 export const totalBrands = brands.length

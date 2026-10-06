@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s · Francisco Alencar",
   },
   description:
-    "Creative Director, Screenwriter, Strategist. 20+ films, 100M+ views for Google, YouTube, TikTok, Waze, Motorola, Mercado Livre, Netflix, CazéTV, and Nubank. AI-native practice built on Claude. Based in São Paulo, working globally.",
+    "Creative Director, Screenwriter, Strategist. 20+ films, 140M+ views for Google, YouTube, TikTok, Waze, Motorola, Mercado Livre, Netflix, CazéTV, and Nubank. AI-native practice built on Claude. Based in São Paulo, working globally.",
   keywords: [
     "Francisco Alencar",
     "Champs Alencar",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "Francisco Alencar",
     title: "Francisco Alencar, Creative Director · Screenwriter · Strategist",
     description:
-      "20+ films, 100M+ views for Google, YouTube, TikTok, Netflix, CazéTV, Nubank. AI-native creative practice from São Paulo.",
+      "20+ films, 140M+ views for Google, YouTube, TikTok, Netflix, CazéTV, Nubank. AI-native creative practice from São Paulo.",
   },
   twitter: { card: "summary_large_image" },
   alternates: {
