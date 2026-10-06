@@ -102,7 +102,7 @@ src/
 
 remotion-ads/           # Remotion project for short-form social cuts
 scripts/                # local tooling (analytics report) — not deployed
-reports/                # generated KPI reports + raw snapshots
+reports/                # KPI reports + raw snapshots — local only, gitignored
 ```
 
 Design tokens live in `src/app/globals.css` under Tailwind v4 `@theme`:
@@ -123,3 +123,5 @@ writes a human-readable KPI report to `reports/`. Requires `.env.local` with
 
 The snapshots matter: the Vercel Hobby plan only retains a 1-month window, so
 month-over-month comparison is only possible from our own accumulated archive.
+`reports/` is gitignored — this repo is public and those are private numbers —
+so the archive lives only on the working machine.

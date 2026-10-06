@@ -14,7 +14,8 @@
  * 1-month window, so period-over-period comparison is impossible from the
  * API alone. Every run snapshots its numbers to reports/data/, and from the
  * second run onward the report can compare against the previous snapshot.
- * Those snapshots are committed — they are the only long-term history.
+ * reports/ is gitignored (the repo is public and these are private
+ * numbers), so the snapshots live only on this machine — back them up.
  */
 
 import { execFile } from "node:child_process";

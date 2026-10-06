@@ -53,3 +53,9 @@ next-env.d.ts
 /remotion-ads/node_modules/
 /remotion-ads/public/clips/
 /remotion-ads/out/
+
+# ─── Private, local-only ────────────────────────────────────────────
+# Working notes and generated reports. Kept on disk, not published.
+/CLAUDE.md
+/memory/
+/reports/
