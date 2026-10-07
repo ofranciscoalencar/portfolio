@@ -69,22 +69,6 @@ export const aiProjects: IntellectualProperty[] = [
     tint: { r: 220, g: 60, b: 40 },
   },
   {
-    slug: "property-auction-tracker",
-    title: "Property Auction Tracker",
-    format: "Web App. Internal Tool.",
-    genre: "Market Intelligence · AI-Native Workflow",
-    logline: {
-      en: "An AI-native pipeline that scans Brazilian judicial auction portals, reads matrículas and edital PDFs, runs underwriting math, and surfaces only the deals that pass the thesis. Built to compress weeks of manual research into a daily dashboard.",
-      pt: "Um pipeline AI-native que varre portais de leilão judicial no Brasil, lê matrículas e PDFs de edital, roda a matemática de underwriting e entrega só os negócios que passam na tese. Feito para comprimir semanas de pesquisa manual em um dashboard diário.",
-    },
-    year: "2026",
-    status: "online",
-    confidentiality: "request-gated",
-    videoPath: "/videos/ai/property-auction-tracker.mp4",
-    // Violet — analytical / data
-    tint: { r: 140, g: 80, b: 220 },
-  },
-  {
     slug: "netflix-ad-dashboard",
     title: "Netflix Ad Dashboard",
     format: "Internal Dashboard. Strategy Tool.",
