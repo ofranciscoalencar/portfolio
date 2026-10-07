@@ -50,7 +50,6 @@ const T = {
   internationalGood: 30, // % non-BR — international reach
   meetConversionGood: 25, // % of home visitors who reach /meet
   brandCutCandidate: 2, // % share below which a brand is a cut candidate
-  ptShareSurfaces: 35, // % PT that argues for PT-first surfaces
 };
 
 // ─── Vercel metrics ─────────────────────────────────────────────────────
@@ -86,28 +85,33 @@ async function query({ groupBy, aggregation = "count", limit = 20 }) {
 }
 
 /**
- * Flatten the CLI's time-bucketed response into { key, value } totals.
- * Buckets are summed because we want the period total, not a time series.
+ * Read period totals from the CLI's JSON.
+ *
+ * Shape (verified against live data, 2026-10-06):
+ *   summary: [{ <groupBy dim>?: "…", vercel_analytics_page_view_count_<agg>: N }, …]
+ *   data:    the same rows per time bucket, plus `timestamp`
+ *
+ * Totals come from `summary`, never from adding up buckets: for
+ * unique/visitorId, one person seen in two buckets would count twice.
+ * Direct traffic arrives as an empty referrerHostname, labelled here.
  */
 function normalize(parsed, groupBy) {
-  const totals = new Map();
+  const valueOf = (row) => {
+    const k = Object.keys(row).find((key) => key.startsWith("vercel_analytics_"));
+    return k ? Number(row[k]) || 0 : 0;
+  };
 
-  for (const bucket of parsed.data ?? []) {
-    for (const row of bucket.values ?? bucket.groups ?? []) {
-      const key = groupBy ? (row[groupBy] ?? row.key ?? row.group ?? "(none)") : "total";
-      const value = Number(row.value ?? row.count ?? 0);
-      totals.set(key, (totals.get(key) ?? 0) + value);
-    }
-  }
-
-  // Ungrouped queries may only populate `summary`.
-  if (totals.size === 0 && parsed.summary?.length) {
-    const value = Number(parsed.summary[0]?.value ?? parsed.summary[0]?.count ?? 0);
-    if (value) totals.set("total", value);
-  }
-
-  return [...totals.entries()]
-    .map(([key, value]) => ({ key, value }))
+  return (parsed.summary ?? [])
+    .map((row) => {
+      let key = groupBy ? row[groupBy] : "total";
+      if (groupBy === "referrerHostname" && !key) key = "(direct)";
+      // Untagged visits have an empty UTM value — that's "no campaign", not
+      // a campaign called "(unknown)". Drop them so the section only shows
+      // when real tagged traffic exists.
+      if (groupBy?.startsWith("utm") && !key) return null;
+      return { key: key || "(unknown)", value: valueOf(row) };
+    })
+    .filter((r) => r && r.value > 0)
     .sort((a, b) => b.value - a.value);
 }
 
@@ -244,7 +248,10 @@ function render(snap, prev) {
 
   L.push(`## Language`);
   L.push("");
-  L.push(`PT share: **${fmtPct(snap.ptShare)}**${snap.ptShare > T.ptShareSurfaces ? ` — above ${T.ptShareSurfaces}%, worth considering PT-first surfaces.` : "."}`);
+  L.push(`Not measurable on this plan. The site switches language with \`?lang=pt\`,`);
+  L.push(`and Web Analytics strips the query string from every recorded path, so PT`);
+  L.push(`and EN visits are indistinguishable. Measuring it would need a custom event`);
+  L.push(`(Vercel Pro) or language-specific paths such as \`/pt/...\`.`);
   L.push("");
 
   L.push(`## Verdict`);
@@ -275,12 +282,11 @@ function sampleSnapshot() {
     { key: "/entertainment", value: 130 },
     { key: "/ai", value: 96 },
     { key: "/branded/youtube", value: 74 },
-    { key: "/?lang=pt", value: 61 },
     { key: "/branded/netflix", value: 12 },
     { key: "/branded/waze", value: 5 },
   ];
   const referrers = [
-    { key: "(none)", value: 610 },
+    { key: "(direct)", value: 610 },
     { key: "linkedin.com", value: 430 },
     { key: "google.com", value: 240 },
     { key: "instagram.com", value: 92 },
@@ -319,7 +325,6 @@ function sampleSnapshot() {
     ownedShare: pct(owned, totalRef),
     internationalShare: pct(totalCountry - 780, totalCountry),
     meetConversion: pct(meetViews, homeViews),
-    ptShare: pct(61, pageviews),
   };
 }
 
@@ -342,7 +347,7 @@ async function main() {
     await Promise.all([
       query({ groupBy: null }),
       query({ groupBy: null, aggregation: "unique/visitorId", limit: 1 }),
-      query({ groupBy: "route" }),
+      query({ groupBy: "requestPath" }),
       query({ groupBy: "referrerHostname" }),
       query({ groupBy: "country" }),
       query({ groupBy: "deviceType" }),
@@ -355,7 +360,7 @@ async function main() {
 
   const totalRef = sum(referrers);
   const owned = referrers
-    .filter((r) => /^(\(none\)|direct|google\.|bing\.|duckduckgo\.|search)/i.test(r.key))
+    .filter((r) => /^(\(direct\)|(www\.)?google\.|(www\.)?bing\.|duckduckgo\.)/i.test(r.key))
     .reduce((n, r) => n + r.value, 0);
 
   const totalCountry = sum(countries);
@@ -366,11 +371,8 @@ async function main() {
   const homeViews = routes.find((r) => r.key === "/" || r.key === "/index")?.value ?? 0;
   const meetViews = routes.find((r) => r.key === "/meet")?.value ?? 0;
 
-  // /branded/[brand] rolls every brand into one route, so fall back to the
-  // per-brand paths when the grouped route hides them.
+  // Grouped by requestPath, so each brand page is its own row.
   const brands = routes.filter((r) => /^\/branded\/.+/.test(r.key));
-
-  const ptViews = routes.filter((r) => /lang=pt/.test(r.key)).reduce((n, r) => n + r.value, 0);
 
   const snapshot = {
     date: new Date().toISOString().slice(0, 10),
@@ -388,11 +390,13 @@ async function main() {
     ownedShare: pct(owned, totalRef),
     internationalShare: pct(international, totalCountry),
     meetConversion: pct(meetViews, homeViews),
-    ptShare: pct(ptViews, pageviews),
   };
 
   const fileName = `${snapshot.date}.json`;
-  const prev = await loadPreviousSnapshot(fileName);
+  // A snapshot with no visitors (e.g. taken before collection was switched
+  // on) is not a baseline — comparing against it yields a meaningless 0%.
+  const found = await loadPreviousSnapshot(fileName);
+  const prev = found && found.visitors > 0 ? found : null;
 
   await writeFile(path.join(DATA_DIR, fileName), JSON.stringify(snapshot, null, 2));
   const reportPath = path.join(ROOT, "reports", `${snapshot.date}.md`);
