@@ -612,19 +612,19 @@ export const films: Film[] = [
     slug: 'nubank-croma',
     title: 'Nubank Croma',
     tagline: {
-      en: 'What you really want.',
-      pt: 'O que você realmente quer.',
+      en: 'Naming and brand platform for Nubank’s new customer segment.',
+      pt: 'Naming e plataforma de marca para o novo segmento do Nubank.',
     },
     synopsis: {
-      en: "Naming, narrative, messaging and branding strategy for Croma, Nubank's new customer segment, created from zero in collaboration with KOTO NYC's designers, brand architects, project managers and client services team in New York. The launch film plays on a familiar reflex: ordering the second-cheapest wine on the list. Croma is the moment you stop doing that and order what you actually want.",
-      pt: 'Naming, narrativa, mensagem e estratégia de marca do Croma, novo segmento de clientes do Nubank, criados do zero em colaboração com o time da KOTO NYC em Nova York: designers, arquitetos de marca, gerentes de projeto e atendimento. O filme de lançamento brinca com um reflexo conhecido: pedir o segundo vinho mais barato da carta. O Croma é o momento em que você para de fazer isso e pede o que realmente quer.',
+      en: 'A branding project built from zero with KOTO NYC. Nubank needed a name and a brand for a new customer segment. Working under the code name Nubank+, two rounds of naming landed on Croma, from the Greek chroma: colour, saturation, intensity. From there I led the verbal identity and brand platform: tone of voice, narrative and manifesto, message architecture, taglines and launch communications, alongside KOTO’s designers and brand architects in New York.',
+      pt: 'Um projeto de branding criado do zero com a KOTO NYC. O Nubank precisava de um nome e de uma marca para um novo segmento de clientes. Sob o codinome Nubank+, duas rodadas de naming chegaram a Croma, do grego chroma: cor, saturação, intensidade. A partir daí liderei a identidade verbal e a plataforma de marca: tom de voz, narrativa e manifesto, arquitetura de mensagem, taglines e comunicação de lançamento, ao lado dos designers e arquitetos de marca da KOTO em Nova York.',
     },
     brand: 'nubank',
     client: 'Nubank',
     role: 'Creative Director & Branding Strategist (Consultant)',
     year: 2026,
     duration: '0:30',
-    views: '44.2M',
+    // No views: the launch film is Nubank's campaign, not this branding work.
     videoPath: '/videos/originals/nubank-croma.mp4',
     editPath: '/videos/edits-15s/nubank-croma.mp4',
     posterPath: '/art/nubank-croma.webp',
@@ -692,7 +692,7 @@ export function getFeaturedFilms(): Film[] {
 }
 
 /** Total views across all films (for homepage stat) */
-export const totalViews = '140M+'
+export const totalViews = '100M+'
 
 /** Total number of brands featured on /branded */
 export const totalBrands = brands.length

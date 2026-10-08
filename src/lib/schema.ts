@@ -16,7 +16,7 @@ export function personJsonLd() {
     alternateName: "Champs Alencar",
     jobTitle: "Creative Director, Screenwriter, Strategist",
     description:
-      "Brazilian Creative Director with 18+ years leading creative for Google, YouTube, Netflix, CazéTV, Motorola, Mercado Livre, and Nubank. 20+ films, 140M+ views. AI-native practice built on Claude and a custom tool stack. Based in São Paulo, working globally.",
+      "Brazilian Creative Director with 18+ years leading creative for Google, YouTube, Netflix, CazéTV, Motorola, Mercado Livre, and Nubank. 20+ films, 100M+ views. AI-native practice built on Claude and a custom tool stack. Based in São Paulo, working globally.",
     url: SITE_URL,
     image: `${SITE_URL}${PORTRAIT_SRC}`,
     email: `mailto:${EMAIL}`,

@@ -15,7 +15,7 @@ import { getAboutCopy } from "@/content/about";
 export const metadata: Metadata = {
   title: "Meet",
   description:
-    "Francisco Alencar, Brazilian Creative Director, Screenwriter, and Strategist. 18+ years leading creative for Google, YouTube, Netflix, CazéTV, Motorola, Mercado Livre, and Nubank. 20+ films, 140M+ views. AI-native practice with Claude. New York Film Academy alum. Languages: Portuguese, English, Italian, Spanish.",
+    "Francisco Alencar, Brazilian Creative Director, Screenwriter, and Strategist. 18+ years leading creative for Google, YouTube, Netflix, CazéTV, Motorola, Mercado Livre, and Nubank. 20+ films, 100M+ views. AI-native practice with Claude. New York Film Academy alum. Languages: Portuguese, English, Italian, Spanish.",
 };
 
 export default async function MeetPage(props: PageProps<"/meet">) {

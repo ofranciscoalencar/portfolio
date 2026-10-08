@@ -8,7 +8,7 @@ import { brands, films } from "@/data/work";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Branded entertainment by Francisco Alencar for Google, YouTube, TikTok, Waze, Motorola, Mercado Livre, Netflix, CazéTV, and Nubank. 20+ films, 140M+ combined views, including the YouTube global Pride campaign with Kobe Bryant and Neymar and the most-watched Google ad in Brazil.",
+    "Branded entertainment by Francisco Alencar for Google, YouTube, TikTok, Waze, Motorola, Mercado Livre, Netflix, CazéTV, and Nubank. 20+ films, 100M+ combined views, including the YouTube global Pride campaign with Kobe Bryant and Neymar and the most-watched Google ad in Brazil.",
 };
 
 export default async function BrandedIndexPage(
