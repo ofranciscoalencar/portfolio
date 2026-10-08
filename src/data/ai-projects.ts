@@ -28,7 +28,7 @@ export const aiProjects: IntellectualProperty[] = [
   },
   {
     slug: "compliance-zero",
-    title: "The Compliance Zero Simulation",
+    title: "Compliance Zero Game",
     format: "Browser Game. PT-BR.",
     genre: "Political Satire · AI + Real-Time News",
     // Premise taken from the game's own copy (compliance-zero-art). Names no
@@ -69,19 +69,29 @@ export const aiProjects: IntellectualProperty[] = [
     tint: { r: 220, g: 60, b: 40 },
   },
   {
-    slug: "netflix-ad-dashboard",
-    title: "Netflix Ad Dashboard",
-    format: "Internal Dashboard. Strategy Tool.",
-    genre: "Advertising · AI-Native Workflow",
+    slug: "koma-ip-platform",
+    title: "KOMA IP Platform",
+    format: "Web App. Open-Source Engine.",
+    genre: "IP Scouting · Anime · AI-Native Workflow",
+    // Copy taken from the KOMA README (~/koma-ip-scouting). The scouting
+    // dataset is private; only the engine is public, so nothing here names
+    // a scouted title.
     logline: {
-      en: "A strategy dashboard for the Netflix ad-supported tier. Pulls audience signals, slate timing, and partner brand fit into one view, with AI-drafted recommendations for which titles to package against which advertisers.",
-      pt: "Um dashboard de estratégia para o tier publicitário do Netflix. Reúne sinais de audiência, timing do slate e fit com marcas parceiras em uma única visão, com recomendações geradas por IA sobre quais títulos empacotar para quais anunciantes.",
+      en: "An IP scouting terminal. KOMA finds comics, webtoons and novels from outside Japan that could become anime while their screen rights are still open, and ranks each one by a score built only from measured signals: audience, international reach, anime fit, validation and momentum. Every claim, from country of origin to rights status, carries the verbatim quote it rests on, re-checked against the live source. A title only shows as open after a dated rights check.",
+      pt: "Um terminal de scouting de IPs. O KOMA encontra quadrinhos, webtoons e romances de fora do Japão que poderiam virar anime enquanto os direitos de tela ainda estão livres, e ranqueia cada título por uma nota feita só de sinais medidos: audiência, alcance internacional, aderência ao anime, validação e momento. Toda afirmação, do país de origem ao status dos direitos, carrega a citação literal em que se apoia, conferida de novo na fonte viva. Um título só aparece como livre depois de uma checagem de direitos datada.",
     },
     year: "2026",
     status: "online",
-    confidentiality: "request-gated",
-    // Amber / gold
-    tint: { r: 220, g: 160, b: 40 },
+    // Public engine — the code is the case, so no request-a-case panel.
+    confidentiality: "public",
+    // No background media: the public demo build shows a single synthetic
+    // title on a light UI, which reads as an empty product behind the dark
+    // slate. KOMA red-orange tint instead.
+    tint: { r: 210, g: 60, b: 35 },
+    cta: {
+      label: { en: "VIEW ON GITHUB", pt: "VER NO GITHUB" },
+      href: "https://github.com/ofranciscoalencar/koma-ip-scouting",
+    },
   },
 ];
 
