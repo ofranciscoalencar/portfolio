@@ -9,6 +9,7 @@ import {
   type EntertainmentCopy,
 } from "@/content/entertainment";
 import { CALENDLY_URL } from "@/lib/contact";
+import { playWhenReady } from "@/lib/video";
 
 type Props = {
   ips: IntellectualProperty[];
@@ -78,8 +79,10 @@ export function IPBrowser({
       video.pause();
       return;
     }
-    video.load();
-    void video.play().catch(() => {});
+    // No video.load() (the element is keyed by src, and load() reset it
+    // mid-autoplay). playWhenReady retries when Chrome refuses play() on a
+    // silent video that has no data yet — see src/lib/video.ts.
+    return playWhenReady(video);
   }, [backgroundVideo, reducedMotion]);
 
   // Tinted radial gradient — only used when no video/poster is available.

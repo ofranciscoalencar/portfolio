@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Brand, Film } from "@/data/work";
 import { withLang, type Lang } from "@/lib/i18n";
+import { playWhenReady } from "@/lib/video";
 
 type Props = {
   brand: Brand;
@@ -47,8 +48,10 @@ export function FilmBrowser({ brand, films, lang, labels }: Props) {
       video.pause();
       return;
     }
-    video.load();
-    void video.play().catch(() => {});
+    // No video.load() (the element is keyed by src, and load() reset it
+    // mid-autoplay). playWhenReady retries when Chrome refuses play() on a
+    // silent video that has no data yet — see src/lib/video.ts.
+    return playWhenReady(video);
   }, [activeVideo, reducedMotion]);
 
   return (

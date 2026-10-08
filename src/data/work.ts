@@ -616,8 +616,9 @@ export const films: Film[] = [
       pt: 'Naming e plataforma de marca para o novo segmento do Nubank.',
     },
     synopsis: {
-      en: 'A branding project built from zero with KOTO NYC. Nubank needed a name and a brand for a new customer segment. Working under the code name Nubank+, two rounds of naming landed on Croma, from the Greek chroma: colour, saturation, intensity. From there I led the verbal identity and brand platform: tone of voice, narrative and manifesto, message architecture, taglines and launch communications, alongside KOTO’s designers and brand architects in New York.',
-      pt: 'Um projeto de branding criado do zero com a KOTO NYC. O Nubank precisava de um nome e de uma marca para um novo segmento de clientes. Sob o codinome Nubank+, duas rodadas de naming chegaram a Croma, do grego chroma: cor, saturação, intensidade. A partir daí liderei a identidade verbal e a plataforma de marca: tom de voz, narrativa e manifesto, arquitetura de mensagem, taglines e comunicação de lançamento, ao lado dos designers e arquitetos de marca da KOTO em Nova York.',
+      // EN is Francisco's own text, verbatim (2026-10-08).
+      en: 'A Branding & Naming project made by KOTO NYC for Nubank, the most admired bank in Brazil. I was invited to lead the Naming creation, verbal identity and brand platform: tone of voice, narrative and manifesto, message architecture, taglines and launch communications, alongside KOTO’s designers and brand architects in New York.',
+      pt: 'Um projeto de Branding & Naming feito pela KOTO NYC para o Nubank, o banco mais admirado do Brasil. Fui convidado para liderar a criação do naming, a identidade verbal e a plataforma de marca: tom de voz, narrativa e manifesto, arquitetura de mensagem, taglines e comunicação de lançamento, ao lado dos designers e arquitetos de marca da KOTO em Nova York.',
     },
     brand: 'nubank',
     client: 'Nubank',

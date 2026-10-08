@@ -84,9 +84,11 @@ export const aiProjects: IntellectualProperty[] = [
     status: "online",
     // Public engine — the code is the case, so no request-a-case panel.
     confidentiality: "public",
-    // No background media: the public demo build shows a single synthetic
-    // title on a light UI, which reads as an empty product behind the dark
-    // slate. KOMA red-orange tint instead.
+    // Background chosen by Francisco (2026-10-08): first 30s of a third-party
+    // "Big 3" anime fan edit (YouTube UVqi5du-Za0, channel Molob). Not his
+    // footage and not licensed — remove this line to fall back to the tint.
+    videoPath: "/videos/ai/koma-ip-platform.mp4",
+    // KOMA red-orange, used if the video is removed or fails to load.
     tint: { r: 210, g: 60, b: 35 },
     cta: {
       label: { en: "VIEW ON GITHUB", pt: "VER NO GITHUB" },

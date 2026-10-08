@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { playWhenReady } from "@/lib/video";
 
 export type HoverReelItem = {
   label: string;
@@ -67,8 +68,10 @@ export function HoverReel({ items, emptyState, header, size = "lg" }: Props) {
       return;
     }
     if (displayVideo) {
-      video.load();
-      void video.play().catch(() => {});
+      // No video.load() (the element is keyed by src, and load() reset it
+      // mid-autoplay). playWhenReady retries when Chrome refuses play() on a
+      // silent video that has no data yet — see src/lib/video.ts.
+      return playWhenReady(video);
     }
   }, [displayVideo, reducedMotion]);
 
